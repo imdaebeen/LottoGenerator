@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="lecture01.js"></script>
+	</head>
+
+	<body>
+			this its a basic html page
+	</body>
+
+
+</html>

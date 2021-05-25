@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+
+	<body>
+
+	<p>로또 번호 자동생성기 입니다.</p><br>
+	<p> 생성될 로또 수를 정하세요. </p>
+	<p>
+		 <input type = "number" value = "5" style = "width:100px;" id = "cnt">
+	     <input type="button"  value="생성" onclick ="button_click();">
+	</p>
+
+	<div id = "lotto" style="display:none">
+		********************************************************<br>
+		**************** 1등 당첨되실거에요 *****************<br>
+        ********************************************************<br>
+
+		로또 번호<br>
+		<div id = "lottoNumber"></div>
+
+
+	</div>
+	<script>
+
+		function  button_click(){
+			document.getElementById("lottoNumber").innerHTML = "";
+			document.getElementById("lotto").style.display = "block";
+			const lottoCnt = document.getElementById("cnt").value;
+			var lottoNumber = new Array();
+			var element = null;
+
+
+			var row = Number(lottoCnt);
+			var col = Number(6);
+
+			for(var i=1;i<=row;i++){
+				element = new Array();
+				for(var j = 1;j<=col;j++){
+					element.push(0);
+				}
+				lottoNumber.push(element);
+			}
+
+			for (var i = 0 ; i < lottoCnt; i++){
+
+				var tempArr = [];
+
+				for(var j = 0 ; j< 6; j++) {
+					var temp = Math.floor((Math.random()*45))+1;
+
+					while(true){
+						if(tempArr.length == 1){
+							break;
+						}
+
+						if(tempArr.includes(temp)){
+							temp = Math.floor((Math.random()*45))+1;
+							continue;
+						}else{
+							break;
+						}
+
+					};
+
+					tempArr.push(temp);
+
+					lottoNumber[i][j] = temp;
+				}
+			}
+
+			lottoNumber.sort(function(a, b) {
+				return a[1] - b[1];
+			});
+
+			var  lottoNumberHtml = document.getElementById("lottoNumber");
+
+			for(var i=0;i<lottoCnt;i++){
+				for(var j=0;j<6;j++){
+					lottoNumberHtml.innerHTML += lottoNumber[i][j]+ "     ";
+				}
+				lottoNumberHtml.innerHTML += "<br/>"
+			}
+
+		}
+
+  	</script>
+	</body>
+
+</html>
